@@ -2,13 +2,12 @@
 
 namespace Scripts.Lane
 {
-    public abstract class LaneBase : MonoBehaviour
+    public abstract class LaneBase 
     {
         public CurrentLane currentLane;
-        public abstract Vector3 LeftLanePos { get; }
-        public abstract Vector3 MiddleLanePos { get; }
-        public abstract Vector3 RightLanePos { get; }
+        public abstract Vector3 LeftLane { get; } 
 
-        public abstract void Init();        
+        public abstract void Init();
+        public abstract Vector3 GetNextLanePos(NextLane nextLane);
     }
 }

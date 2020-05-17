@@ -6,16 +6,22 @@ namespace Scripts.Player
 {
     public class Player : PlayerBase
     {
-        [SerializeField] private CharacterController characterController;
-        [SerializeField] private LaneBase laneController;
-        [SerializeField] private float playerSpeed;
-
+        private PlayerDataBase playerData;
+        private LaneBase laneController;
+        private MonoBehaviour mono;
         private IInputReader playerInputReader;
         private IMovement playerMovement;
 
         private bool canMove = false;
 
-        private void Awake()
+        public Player(PlayerDataBase _playerData, LaneBase _laneController, MonoBehaviour _mono)
+        {
+            playerData = _playerData;
+            laneController = _laneController;
+            mono = _mono;
+        }
+
+        public override void Init()
         {
             InitMovement();
             InitInputReader();
@@ -40,15 +46,14 @@ namespace Scripts.Player
             canMove = false;
         }
 
+        private void InitMovement()
+        {
+            playerMovement = new PlayerMovement(playerData, laneController, mono);
+        }
+
         private void InitInputReader()
         {
             playerInputReader = new PlayerInputReader(playerMovement);
         }
-
-        private void InitMovement()
-        {
-            playerMovement = new PlayerMovement(characterController, laneController ,playerSpeed);
-        }
-
     }
 }
