@@ -2,6 +2,7 @@
 using Scripts.Player;
 using Scripts.GameState;
 using Scripts.Lane;
+using Scripts.Camera;
 
 namespace Scripts
 {
@@ -9,15 +10,18 @@ namespace Scripts
     {
         [SerializeField] private PlayerDataBase playerData;
         [SerializeField] private LaneDataBase laneData;
+        [SerializeField] private CameraDataBase cameraData;
 
         private PlayerBase playerController;
         private LaneBase laneController;
         private GameStateBase gameState;
+        private CameraBase cameraController;
 
         private void Awake()
         {
             InitLane();
             InitPLayer();
+            InitCamera();
             InitGameState();
         }
 
@@ -27,22 +31,33 @@ namespace Scripts
             playerController?.Tick();
         }
 
-        private void InitGameState()
+        private void LateUpdate()
         {
-            gameState = new GameStateController(playerController);
-            gameState.Init();
-        }
-
-        private void InitPLayer()
-        {
-            playerController = new Player.Player(playerData, laneController ,this);
-            playerController.Init();
+            cameraController?.Tick();
         }
 
         private void InitLane()
         {
             laneController = new LaneController(laneData);
             laneController.Init();
+        }
+
+        private void InitPLayer()
+        {
+            playerController = new Player.Player(playerData, laneController, this);
+            playerController.Init();
+        }
+
+        private void InitCamera()
+        {
+            cameraController = new CameraController(cameraData,playerData);
+            cameraController.Init();
+        }
+
+        private void InitGameState()
+        {
+            gameState = new GameStateController(playerController);
+            gameState.Init();
         }
     }
 }
