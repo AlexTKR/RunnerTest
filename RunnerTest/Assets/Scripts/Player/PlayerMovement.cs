@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
+using Scripts.Lane;
 
 namespace Scripts.Player
 {
     public class PlayerMovement : IMovement
     {
         private CharacterController characterController;
+        private LaneBase laneController;
         private float speed;
 
-        public PlayerMovement(CharacterController _characterController, float _speed)
+        public PlayerMovement(CharacterController _characterController, LaneBase _laneController , float _speed)
         {
             characterController = _characterController;
+            laneController = _laneController;
             speed = _speed;
         }
 

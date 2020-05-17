@@ -1,4 +1,5 @@
 ﻿using Scripts.InputReaders;
+using UnityEngine;
 
 namespace Scripts.Player
 {
@@ -13,7 +14,15 @@ namespace Scripts.Player
 
         public void Read()
         {
-            
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                playerMovement.MoveLeft();
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                playerMovement.MoveRight();
+            }
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using Scripts.InputReaders;
+using Scripts.Lane;
 
 namespace Scripts.Player
 {
     public class Player : PlayerBase
     {
         [SerializeField] private CharacterController characterController;
+        [SerializeField] private LaneBase laneController;
         [SerializeField] private float playerSpeed;
 
         private IInputReader playerInputReader;
@@ -45,7 +47,7 @@ namespace Scripts.Player
 
         private void InitMovement()
         {
-            playerMovement = new PlayerMovement(characterController, playerSpeed);
+            playerMovement = new PlayerMovement(characterController, laneController ,playerSpeed);
         }
 
     }
