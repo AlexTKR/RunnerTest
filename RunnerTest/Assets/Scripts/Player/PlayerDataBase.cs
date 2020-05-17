@@ -1,0 +1,12 @@
+﻿using UnityEngine;
+
+namespace Scripts.Player
+{
+    public abstract class PlayerDataBase : MonoBehaviour
+    {
+        public abstract CharacterController CharacterController { get; }
+        public abstract Transform PlayerTransform { get; }
+        public abstract float MovingSpeed { get; }
+        public abstract float TurningSpeed { get; }
+    }
+}
