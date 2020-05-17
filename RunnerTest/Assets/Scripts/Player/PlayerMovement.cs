@@ -50,11 +50,7 @@ namespace Scripts.Player
 
             while (playerData.PlayerTransform.position.x >= nextLanePos.x + offset)
             {
-                float timeMultiplier = Time.time - currTime;
-                Vector3 playerPos = playerData.PlayerTransform.position;
-                float turnSpeed = timeMultiplier * Time.deltaTime * playerData.TurningSpeed;
-                playerPos.x = Mathf.Lerp(playerData.PlayerTransform.position.x, nextLanePos.x, turnSpeed);
-                playerData.PlayerTransform.position = playerPos;
+                Move(nextLanePos, currTime);
                 yield return null;
             }
 
@@ -68,15 +64,20 @@ namespace Scripts.Player
 
             while (playerData.PlayerTransform.position.x <= nextLanePos.x - offset)
             {
-                float timeMultiplier = Time.time - currTime;
-                Vector3 playerPos = playerData.PlayerTransform.position;
-                float turnSpeed = timeMultiplier * Time.deltaTime * playerData.TurningSpeed;
-                playerPos.x = Mathf.Lerp(playerData.PlayerTransform.position.x, nextLanePos.x, turnSpeed);
-                playerData.PlayerTransform.position = playerPos;
+                Move(nextLanePos, currTime);
                 yield return null;
             }
 
             isMovingSideways = false;
+        }
+
+        private void Move(Vector3 nextLanePos, float currTime)
+        {
+            float timeMultiplier = Time.time - currTime;
+            Vector3 playerPos = playerData.PlayerTransform.position;
+            float turnSpeed = timeMultiplier * Time.deltaTime * playerData.TurningSpeed;
+            playerPos.x = Mathf.Lerp(playerData.PlayerTransform.position.x, nextLanePos.x, turnSpeed);
+            playerData.PlayerTransform.position = playerPos;
         }
     }
 }

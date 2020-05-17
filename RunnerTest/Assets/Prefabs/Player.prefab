@@ -111,5 +111,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 6906820174552262689}
   playerTransform: {fileID: 6906820174552262694}
-  movingSpeed: 2
+  movingSpeed: 5
   turningSpeed: 15
