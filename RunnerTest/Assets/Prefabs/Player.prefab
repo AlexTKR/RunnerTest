@@ -112,4 +112,4 @@ MonoBehaviour:
   characterController: {fileID: 6906820174552262689}
   playerTransform: {fileID: 6906820174552262694}
   movingSpeed: 2
-  turningSpeed: 1.3
+  turningSpeed: 15
