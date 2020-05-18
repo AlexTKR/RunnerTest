@@ -77,3 +77,5 @@ MonoBehaviour:
   platformFactory: {fileID: 906204206957074543, guid: f828974913213c7479bf7166b179c5a1,
     type: 3}
   platformHolder: {fileID: 5421367623288489123}
+  platformStartSpawnPos: {x: 0, y: 0, z: 25}
+  platformLenght: 50

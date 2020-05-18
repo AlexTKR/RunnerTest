@@ -4,6 +4,7 @@ using Scripts.GameState;
 using Scripts.Lane;
 using Scripts.Camera;
 using Scripts.Platform;
+using Scripts.Spawning;
 
 namespace Scripts
 {
@@ -18,11 +19,13 @@ namespace Scripts
         private LaneBase laneController;
         private GameStateBase gameState;
         private CameraBase cameraController;
+        private PlatformControllerBase platformController;
 
         private void Awake()
         {
             InitLane();
             InitPLayer();
+            InitPlatform();
             InitCamera();
             InitGameState();
         }
@@ -31,6 +34,7 @@ namespace Scripts
         {
             gameState?.Tick();
             playerController?.Tick();
+            platformController?.Tick();
         }
 
         private void LateUpdate()
@@ -50,6 +54,13 @@ namespace Scripts
             playerController.Init();
         }
 
+        private void InitPlatform()
+        {
+            platformController = new PlatformController(platformData, playerData);
+            platformController.Init();
+            platformController.PreSpawnPlatforms();
+        }
+
         private void InitCamera()
         {
             cameraController = new CameraController(cameraData,playerData);
@@ -58,7 +69,7 @@ namespace Scripts
 
         private void InitGameState()
         {
-            gameState = new GameStateController(playerController);
+            gameState = new GameStateController(playerController, platformController);
             gameState.Init();
         }
     }
