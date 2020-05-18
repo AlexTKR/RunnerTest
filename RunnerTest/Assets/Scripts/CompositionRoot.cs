@@ -3,6 +3,7 @@ using Scripts.Player;
 using Scripts.GameState;
 using Scripts.Lane;
 using Scripts.Camera;
+using Scripts.Platform;
 
 namespace Scripts
 {
@@ -11,6 +12,7 @@ namespace Scripts
         [SerializeField] private PlayerDataBase playerData;
         [SerializeField] private LaneDataBase laneData;
         [SerializeField] private CameraDataBase cameraData;
+        [SerializeField] private PlatformDataBase platformData;
 
         private PlayerBase playerController;
         private LaneBase laneController;

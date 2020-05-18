@@ -295,7 +295,7 @@ PrefabInstance:
     - target: {fileID: 8718358799743654541, guid: 2cab71b1fff870c419c8c80ff7e2dce3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8718358799743654541, guid: 2cab71b1fff870c419c8c80ff7e2dce3,
         type: 3}
@@ -385,6 +385,7 @@ MonoBehaviour:
   playerData: {fileID: 6906820174007879982}
   laneData: {fileID: 432213987696512384, guid: 9168718f2c288b04aa83ec3c293b62b0, type: 3}
   cameraData: {fileID: 534669906}
+  platformData: {fileID: 0}
 --- !u!1 &1758779948
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +436,7 @@ PrefabInstance:
     - target: {fileID: 6906820174552262694, guid: 4960c4bab950bf9418b5fa6d31a2fcfe,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6906820174552262694, guid: 4960c4bab950bf9418b5fa6d31a2fcfe,
         type: 3}
