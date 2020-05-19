@@ -25,7 +25,7 @@ namespace Scripts.Player
         {
             InitMovement();
             InitInputReader();
-        }
+        }        
 
         public override void Tick()
         {
@@ -34,7 +34,7 @@ namespace Scripts.Player
                 playerInputReader.Read();
                 playerMovement.Tick();
             }
-        }
+        }       
 
         public override void StartMoving()
         {
@@ -44,6 +44,12 @@ namespace Scripts.Player
         public override void StopMoving()
         {
             canMove = false;
+        }
+
+        public override void RestartPlayer()
+        {
+            playerData.CharacterController.transform.position = new Vector3(0, 1, 0);
+            Physics.SyncTransforms();
         }
 
         private void InitMovement()

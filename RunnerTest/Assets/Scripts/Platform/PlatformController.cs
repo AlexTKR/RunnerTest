@@ -1,6 +1,8 @@
 ﻿using Scripts.Player;
 using Scripts.Spawning;
 using Scripts.Pools;
+using Scripts.Lane;
+using Scripts.Obstacles;
 
 namespace Scripts.Platform
 {
@@ -8,16 +10,20 @@ namespace Scripts.Platform
     {
         private PlayerDataBase playerData;
         private PlatformDataBase platformData;
+        private LaneDataBase laneData;
+        private ObstaclesData obstaclesData;
 
-        private SpawnerBase platformSpawner;
+        private PlatformSpawnerBase platformSpawner;
         private GenericPool<PlatformBase> platformPool;
 
         private bool canSpawn = false;
 
-        public PlatformController(PlatformDataBase _platformData, PlayerDataBase _playerData)
+        public PlatformController(PlatformDataBase _platformData, PlayerDataBase _playerData, LaneDataBase _laneData,  ObstaclesData _obstaclesData)
         {
             playerData = _playerData;
             platformData = _platformData;
+            laneData = _laneData;
+            obstaclesData = _obstaclesData;
         }
 
         public override void Init()
@@ -44,6 +50,16 @@ namespace Scripts.Platform
             canSpawn = false;
         }
 
+        public override void PreSpawnPlatforms()
+        {
+            platformSpawner.CreatePatforms();
+        }
+
+        public override void ReStartPlatforms()
+        {
+            platformSpawner.RestartSpawn();
+        }
+
         private void initPlatformPool()
         {
             platformPool = new PlatformPool();
@@ -52,12 +68,7 @@ namespace Scripts.Platform
 
         private void InitPalatformSpawner()
         {
-            platformSpawner = new PlatformSpawner(platformData, playerData, platformPool);
-        }
-
-        public override void PreSpawnPlatforms()
-        {
-            platformSpawner.CreatePatforms();
+            platformSpawner = new PlatformSpawner(platformData, playerData, platformPool, laneData, obstaclesData);
         }
     }
 }

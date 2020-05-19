@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Scripts.Player
 {
@@ -13,5 +14,10 @@ namespace Scripts.Player
         public override Transform PlayerTransform => playerTransform;
         public override float MovingSpeed => movingSpeed;
         public override float TurningSpeed => turningSpeed;
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            OnControllerHit?.Invoke(hit);
+        }
     }
 }

@@ -12,6 +12,11 @@ namespace Scripts.Pools
             objects = new Queue<T>();
         }
 
+        public int GetCount()
+        {
+            return objects.Count;
+        }
+
         public bool IsPoolEmpty()
         {
             return objects.Count == 0 ? true : false;

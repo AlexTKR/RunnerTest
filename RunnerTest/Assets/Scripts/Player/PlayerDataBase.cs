@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 namespace Scripts.Player
 {
@@ -8,5 +9,7 @@ namespace Scripts.Player
         public abstract Transform PlayerTransform { get; }
         public abstract float MovingSpeed { get; }
         public abstract float TurningSpeed { get; }
+
+        public Action<ControllerColliderHit> OnControllerHit;
     }
 }

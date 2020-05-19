@@ -79,3 +79,4 @@ MonoBehaviour:
   platformHolder: {fileID: 5421367623288489123}
   platformStartSpawnPos: {x: 0, y: 0, z: 25}
   platformLenght: 50
+  platformCount: 10

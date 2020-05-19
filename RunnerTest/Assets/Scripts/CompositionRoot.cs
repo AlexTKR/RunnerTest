@@ -4,7 +4,7 @@ using Scripts.GameState;
 using Scripts.Lane;
 using Scripts.Camera;
 using Scripts.Platform;
-using Scripts.Spawning;
+using Scripts.Obstacles;
 
 namespace Scripts
 {
@@ -14,6 +14,7 @@ namespace Scripts
         [SerializeField] private LaneDataBase laneData;
         [SerializeField] private CameraDataBase cameraData;
         [SerializeField] private PlatformDataBase platformData;
+        [SerializeField] private ObstaclesData obstaclesData;
 
         private PlayerBase playerController;
         private LaneBase laneController;
@@ -56,7 +57,7 @@ namespace Scripts
 
         private void InitPlatform()
         {
-            platformController = new PlatformController(platformData, playerData);
+            platformController = new PlatformController(platformData, playerData, laneData, obstaclesData);
             platformController.Init();
             platformController.PreSpawnPlatforms();
         }
@@ -69,7 +70,7 @@ namespace Scripts
 
         private void InitGameState()
         {
-            gameState = new GameStateController(playerController, platformController);
+            gameState = new GameStateController(playerController, playerData ,platformController, this);
             gameState.Init();
         }
     }

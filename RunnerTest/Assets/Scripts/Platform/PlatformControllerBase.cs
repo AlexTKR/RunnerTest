@@ -8,5 +8,6 @@
         public abstract void PreSpawnPlatforms();
         public abstract void StartSpawningPlatforms();
         public abstract void StopSpawningPlatforms();
+        public abstract void ReStartPlatforms();
     }
 }
