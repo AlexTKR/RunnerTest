@@ -6,8 +6,6 @@ namespace Scripts.Lane
     {
         private LaneDataBase laneData;
 
-        public override Vector3 LeftLane => laneData.LeftLanePos;
-
         public LaneController(LaneDataBase _laneData)
         {
             laneData = _laneData;

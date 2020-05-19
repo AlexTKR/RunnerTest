@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Scripts.Lane;
+using Scripts.Screen;
 
 namespace Scripts.Player
 {
@@ -9,15 +10,18 @@ namespace Scripts.Player
         private PlayerDataBase playerData;
         private LaneBase laneController;
         private MonoBehaviour mono;
+        private ScreenBase screenController;
 
         private bool isMovingSideways = false;
         private float offset = 0.05f;
+        private float distance;
 
-        public PlayerMovement(PlayerDataBase _playerData, LaneBase _laneController, MonoBehaviour _mono)
+        public PlayerMovement(PlayerDataBase _playerData, LaneBase _laneController, MonoBehaviour _mono, ScreenBase _screenController)
         {
             playerData = _playerData;
             laneController = _laneController;
             mono = _mono;
+            screenController = _screenController;
         }
 
         public void MoveLeft()
@@ -41,6 +45,8 @@ namespace Scripts.Player
         public void Tick()
         {
             playerData.CharacterController.Move(Vector3.forward * Time.deltaTime * playerData.MovingSpeed);
+            distance = Vector3.Distance(playerData.PlayerStartPos, playerData.PlayerTransform.position);
+            screenController.SetDistance(distance);
         }
 
         private IEnumerator MovePlayerLeft()
