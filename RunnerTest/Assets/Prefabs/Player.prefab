@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6906820174552262692}
   - component: {fileID: 6906820174552262689}
   - component: {fileID: 6465614587949374273}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,5 +111,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 6906820174552262689}
   playerTransform: {fileID: 6906820174552262694}
-  movingSpeed: 5
-  turningSpeed: 15
+  playerStartPos: {x: 0, y: 1, z: -48}
+  movingSpeed: 10
+  turningSpeed: 35

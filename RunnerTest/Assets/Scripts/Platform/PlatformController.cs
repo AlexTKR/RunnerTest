@@ -3,6 +3,7 @@ using Scripts.Spawning;
 using Scripts.Pools;
 using Scripts.Lane;
 using Scripts.Obstacles;
+using Scripts.Collectables;
 
 namespace Scripts.Platform
 {
@@ -11,19 +12,24 @@ namespace Scripts.Platform
         private PlayerDataBase playerData;
         private PlatformDataBase platformData;
         private LaneDataBase laneData;
-        private ObstaclesData obstaclesData;
+        private ObstaclesDataBase obstaclesData;
+        private CollectablesDataBase collectablesData;
+        private CollectablesControllerBase collectablesController;
 
         private PlatformSpawnerBase platformSpawner;
         private GenericPool<PlatformBase> platformPool;
 
         private bool canSpawn = false;
 
-        public PlatformController(PlatformDataBase _platformData, PlayerDataBase _playerData, LaneDataBase _laneData,  ObstaclesData _obstaclesData)
+        public PlatformController(PlatformDataBase _platformData, PlayerDataBase _playerData, LaneDataBase _laneData, ObstaclesDataBase
+            _obstaclesData, CollectablesDataBase _collectablesData, CollectablesControllerBase _collectablesController)
         {
             playerData = _playerData;
             platformData = _platformData;
             laneData = _laneData;
             obstaclesData = _obstaclesData;
+            collectablesData = _collectablesData;
+            collectablesController = _collectablesController;
         }
 
         public override void Init()
@@ -68,7 +74,7 @@ namespace Scripts.Platform
 
         private void InitPalatformSpawner()
         {
-            platformSpawner = new PlatformSpawner(platformData, playerData, platformPool, laneData, obstaclesData);
+            platformSpawner = new PlatformSpawner(platformData, playerData, platformPool, laneData, obstaclesData, collectablesData, collectablesController);
         }
     }
 }

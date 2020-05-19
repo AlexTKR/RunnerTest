@@ -4,6 +4,7 @@ using Scripts.Player;
 using Scripts.Pools;
 using Scripts.Lane;
 using Scripts.Obstacles;
+using Scripts.Collectables;
 
 namespace Scripts.Spawning
 {
@@ -13,19 +14,24 @@ namespace Scripts.Spawning
         private PlayerDataBase playerData;
         private GenericPool<PlatformBase> platformPool;
         private LaneDataBase laneData;
-        private ObstaclesData obstaclesData;
+        private ObstaclesDataBase obstaclesData;
+        private CollectablesDataBase collectablesData;
+        private CollectablesControllerBase collectablesController;
 
         private Vector3 currentPlatformPos;
         private float lastPlatformPos;
 
         public PlatformSpawner(PlatformDataBase _platformData, PlayerDataBase _playerData, GenericPool<PlatformBase>
-            _platformPool, LaneDataBase _laneData, ObstaclesData _obstaclesData)
+            _platformPool, LaneDataBase _laneData, ObstaclesDataBase _obstaclesData, CollectablesDataBase _collectablesData, 
+            CollectablesControllerBase _collectablesController)
         {
             platformData = _platformData;
             playerData = _playerData;
             platformPool = _platformPool;
             laneData = _laneData;
             obstaclesData = _obstaclesData;
+            collectablesData = _collectablesData;
+            collectablesController = _collectablesController;
         }
 
         public override void CreatePatforms()
@@ -60,12 +66,12 @@ namespace Scripts.Spawning
             if (playerData.PlayerTransform.position.z >= lastPlatformPos + platformData.PlatformLenght)
             {
                 lastPlatformPos += platformData.PlatformLenght;
-                Spawn();               
+                Spawn();
             }
         }
 
         private void Spawn()
-        {            
+        {
             PlatformBase currentPlatform = platformPool.GetInctance();
             currentPlatform.DisablePlatform();
             currentPlatform.transform.position = Vector3.forward * currentPlatformPos.z;
@@ -79,6 +85,8 @@ namespace Scripts.Spawning
             PlatformBase currentPlatform = platformData.PlatformFactory.GetInstance();
             currentPlatform.SetLaneController(laneData);
             currentPlatform.SetObstaclesData(obstaclesData);
+            currentPlatform.SetCollectablesData(collectablesData);
+            currentPlatform.SetCollectablesController(collectablesController);
             currentPlatform.transform.SetParent(platformData.PlatformHolder);
             currentPlatform.transform.position = Vector3.forward * currentPlatformPos.z;
             currentPlatformPos.z += platformData.PlatformLenght;
